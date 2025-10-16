@@ -150,6 +150,8 @@ REGIONAL_INFERENCE_PROFILES = {
             "eu-south-2": "eu",
             "ap-northeast-1": "jp",
             "ap-northeast-3": "jp",
+            "ap-southeast-2": "au",
+            "ap-southeast-5": "au",
         }
     },
     "claude-v3-haiku": {
