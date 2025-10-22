@@ -48,6 +48,9 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 BEDROCK_REGION = os.environ.get("BEDROCK_REGION", "us-east-1")
+ENABLE_BEDROCK_GLOBAL_INFERENCE = (
+    os.environ.get("ENABLE_BEDROCK_GLOBAL_INFERENCE", "false") == "true"
+)
 ENABLE_BEDROCK_CROSS_REGION_INFERENCE = (
     os.environ.get("ENABLE_BEDROCK_CROSS_REGION_INFERENCE", "false") == "true"
 )
@@ -58,6 +61,7 @@ BASE_MODEL_IDS = {
     "claude-v4.1-opus": "anthropic.claude-opus-4-1-20250805-v1:0",
     "claude-v4-sonnet": "anthropic.claude-sonnet-4-20250514-v1:0",
     "claude-v4.5-sonnet": "anthropic.claude-sonnet-4-5-20250929-v1:0",
+    "claude-v4.5-haiku": "anthropic.claude-haiku-4-5-20251001-v1:0",
     "claude-v3-haiku": "anthropic.claude-3-haiku-20240307-v1:0",
     "claude-v3-opus": "anthropic.claude-3-opus-20240229-v1:0",
     "claude-v3.5-sonnet": "anthropic.claude-3-5-sonnet-20240620-v1:0",
@@ -94,6 +98,33 @@ GLOBAL_INFERENCE_PROFILES = {
         ]
     },
     "claude-v4.5-sonnet": {
+        "supported_regions": [
+            "us-west-2",
+            "us-west-1",
+            "us-east-2",
+            "us-east-1",
+            "sa-east-1",
+            "eu-west-3",
+            "eu-west-2",
+            "eu-west-1",
+            "eu-south-2",
+            "eu-south-1",
+            "eu-north-1",
+            "eu-central-2",
+            "eu-central-1",
+            "ca-central-1",
+            "ap-southeast-4",
+            "ap-southeast-3",
+            "ap-southeast-2",
+            "ap-southeast-1",
+            "ap-south-2",
+            "ap-south-1",
+            "ap-northeast-3",
+            "ap-northeast-2",
+            "ap-northeast-1",
+        ]
+    },
+    "claude-v4.5-haiku": {
         "supported_regions": [
             "us-west-2",
             "us-west-1",
@@ -162,6 +193,22 @@ REGIONAL_INFERENCE_PROFILES = {
             "ap-northeast-3": "jp",
             "ap-southeast-2": "au",
             "ap-southeast-5": "au",
+        }
+    },
+    "claude-v4.5-haiku": {
+        "supported_regions": {
+            "us-east-1": "us",
+            "us-east-2": "us",
+            "us-west-1": "us",
+            "us-west-2": "us",
+            "ap-northeast-1": "jp",
+            "ap-northeast-3": "jp",
+            "eu-central-1": "eu",
+            "eu-north-1": "eu",
+            "eu-west-1": "eu",
+            "eu-west-3": "eu",
+            "eu-south-1": "eu",
+            "eu-south-2": "eu",
         }
     },
     "claude-v3-haiku": {
@@ -348,6 +395,7 @@ def is_tooluse_supported(model: type_model_name) -> bool:
 def is_specify_both_temperature_and_top_p_supported(model: type_model_name) -> bool:
     return model not in [
         "claude-v4.5-sonnet",
+        "claude-v4.5-haiku",
     ]
 
 
@@ -360,6 +408,7 @@ def is_prompt_caching_supported(
             "claude-v4.1-opus",
             "claude-v4-sonnet",
             "claude-v4.5-sonnet",
+            "claude-v4.5-haiku",
             "claude-v3.7-sonnet",
             "claude-v3.5-sonnet-v2",
             "claude-v3.5-haiku",
@@ -371,6 +420,7 @@ def is_prompt_caching_supported(
             "claude-v4.1-opus",
             "claude-v4-sonnet",
             "claude-v4.5-sonnet",
+            "claude-v4.5-haiku",
             "claude-v3.7-sonnet",
             "claude-v3.5-sonnet-v2",
             "claude-v3.5-haiku",
@@ -1080,6 +1130,7 @@ def get_regional_inference_profile_id(
 
 def get_model_id(
     model: type_model_name,
+    enable_global: bool = ENABLE_BEDROCK_GLOBAL_INFERENCE,
     enable_cross_region: bool = ENABLE_BEDROCK_CROSS_REGION_INFERENCE,
     bedrock_region: str = BEDROCK_REGION,
 ) -> str:
@@ -1087,8 +1138,8 @@ def get_model_id(
     if not base_model_id:
         raise ValueError(f"Unsupported model: {model}")
 
-    if enable_cross_region:
-        # 1. First, try to use global inference profile if available
+    # 1. First, try to use global inference profile if enabled and available
+    if enable_global:
         global_profile_id = get_global_inference_profile_id(model, bedrock_region)
         if global_profile_id:
             logger.info(
@@ -1096,7 +1147,8 @@ def get_model_id(
             )
             return global_profile_id
 
-        # 2. Fallback to regional cross-region inference profile if available
+    # 2. Fallback to regional cross-region inference profile if enabled and available
+    if enable_cross_region:
         regional_profile_id = get_regional_inference_profile_id(model, bedrock_region)
         if regional_profile_id:
             logger.info(
@@ -1108,6 +1160,6 @@ def get_model_id(
                 f"Region '{bedrock_region}' does not support cross-region inference for model '{model}'."
             )
 
-    # 3. No cross-region inference
+    # 3. Use standalone model (no global or cross-region inference)
     logger.info(f"Using local model ID: {base_model_id} for model '{model}'")
     return base_model_id

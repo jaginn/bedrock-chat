@@ -11,6 +11,9 @@ const translation: typeof en = {
     app: {
       name: 'Bedrock Chat',
       inputMessage: 'お手伝いできることはありますか？',
+      myBots: 'マイボット',
+      discoverBots: 'ボットを探す',
+      pinnedBots: 'ピン留めボット',
       starredBots: 'スター付きのボット',
       recentlyUsedBots: '最近使用したボット',
       conversationHistory: '最近のチャット',
@@ -39,6 +42,11 @@ const translation: typeof en = {
         label: 'Claude 4.5 (Sonnet)',
         description:
           'Sonnetの最新版。Claudeモデル最高レベルのコーディング性能と長時間タスク処理が可能',
+      },
+      'claude-v4.5-haiku': {
+        label: 'Claude 4.5 (Haiku)',
+        description:
+          'Haikuシリーズ最速かつ最高性能。フロンティアレベルの性能と拡張思考機能を搭載',
       },
       'claude-v3-haiku': {
         label: 'Claude 3 (Haiku)',
@@ -656,6 +664,7 @@ const translation: typeof en = {
     drawerOptionsDialog: {
       title: 'サイドメニューオプション',
       label: {
+        visibility: '表示設定',
         displayCount: '表示数',
       },
     },
