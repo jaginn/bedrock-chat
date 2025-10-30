@@ -4,7 +4,7 @@ export default {
   darkMode: 'class',
   theme: {
     fontFamily: {
-      body: ['M PLUS Rounded 1c'],
+      body: ['Barlow', 'sans-serif'],
     },
     extend: {
       transitionProperty: {
@@ -16,25 +16,25 @@ export default {
       },
       colors: {
         'aws-squid-ink': {
-          light: '#232F3E',
+          light: '#447B6F',    // Brand teal/sage - primary color
           dark: '#171717',
         },
         'aws-sea-blue': {
-          light: '#005276',
+          light: '#41505D',    // Brand dark blue-gray - secondary color
           dark: '#757575',
         },
         'aws-sea-blue-hover': {
-          light: '#003550',
+          light: '#2E3A44',    // Darker shade for hover states
           dark: '#5b5b5b',
         },
-        'aws-aqua': '#007faa',
-        'aws-lab': '#38ef7d',
-        'aws-mist': '#9ffcea',
+        'aws-aqua': '#447B6F',     // Brand teal/sage
+        'aws-lab': '#2E9E46',      // Brand bright green - accent color
+        'aws-mist': '#94B391',     // Brand light sage - tertiary color
         'aws-font-color': {
-          light: '#232F3E',
+          light: '#41505D',    // Brand dark blue-gray for text
           dark: '#cacaca',
           gray: '#909193',
-          blue: '#276cc6',
+          blue: '#447B6F',     // Brand teal for links/highlights
         },
         'aws-font-color-white': {
           light: '#ffffff',

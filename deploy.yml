@@ -169,7 +169,7 @@ Resources:
                   "echo \"$CDK_JSON_OVERRIDE\" | jq '.' && jq --argjson override \"$CDK_JSON_OVERRIDE\" '. * $override' cdk/cdk.json > temp.json && mv temp.json cdk/cdk.json",
                   "cd cdk",
                   "cat cdk.json",
-                  "npm ci",                  
+                  "npm ci",         
                   "npx cdk deploy --require-approval never --all"
                 ]
               }
