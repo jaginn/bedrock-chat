@@ -297,11 +297,11 @@ const Drawer: React.FC<Props> = (props) => {
             opened ? 'visible w-64' : 'invisible w-0'
           } text-sm  text-white transition-width`}>
           {logoSrc && (
-            <div className="sticky top-0 z-10 flex items-center justify-center border-b border-white/10 bg-aws-squid-ink-light px-4 py-6 dark:bg-aws-squid-ink-dark">
+            <div className="sticky top-0 z-10 flex items-center justify-center border-b border-white/10 bg-aws-squid-ink-light p-3 dark:bg-aws-squid-ink-dark">
               <button
                 type="button"
                 onClick={onClickLogo}
-                className="flex w-full items-center justify-center focus:outline-none focus:ring-2 focus:ring-white/60 focus:ring-offset-2 focus:ring-offset-transparent">
+                className="flex bg-white rounded w-full items-center justify-center focus:outline-none focus:ring-2 focus:ring-white/60 focus:ring-offset-2 focus:ring-offset-transparent">
                 <img
                   src={logoSrc}
                   alt={t('app.name')}
