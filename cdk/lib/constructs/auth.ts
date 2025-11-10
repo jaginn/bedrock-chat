@@ -135,6 +135,7 @@ export class Auth extends Construct {
               attributeMapping: {
                 // This is an example of mapping the email attribute.
                 // Replace this with the actual idp attribute key.
+                username: ProviderAttribute.other("sub"),
                 email: ProviderAttribute.other("email"),
               },
               scopes: ["openid", "email"],
