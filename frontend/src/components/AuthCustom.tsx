@@ -22,7 +22,7 @@ const AuthCustom: React.FC<Props> = ({ children }) => {
 
   // Although logoPath is available in global config, the config endpoint is authenticated so cannot be
   // called at this point. Image hard-coded for now.
-  const logoSrc = '/images/ardy_logo.bmp';
+  const logoSrc = '/ardy_logo.bmp';
 
   useEffect(() => {
     getCurrentUser()
