@@ -63,7 +63,7 @@ const AuthCustom: React.FC<Props> = ({ children }) => {
           <div className="w-full max-w-md rounded-2xl border-2 border-white/20 bg-white p-10 shadow-2xl backdrop-blur-sm dark:bg-aws-squid-ink-dark/90">
             <div className="flex flex-col items-center gap-6">
               {logoSrc && (
-                <div className="mb-4 p-8">
+                <div className="mb-4">
                   <img
                     src={logoSrc}
                     alt={t('app.name')}
@@ -73,11 +73,8 @@ const AuthCustom: React.FC<Props> = ({ children }) => {
                 </div>
               )}
               <div className="text-center">
-                <h1 className="text-3xl font-bold text-aws-squid-ink dark:text-white">
-                  {t('app.name')}
-                </h1>
-                <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
-                  Sign in to continue
+                <p className="mt-2 text-lg text-gray-600 dark:text-gray-300">
+                  Please sign in to continue
                 </p>
               </div>
               <Button
