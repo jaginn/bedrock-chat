@@ -10,7 +10,6 @@ import { BaseProps } from '../@types/common';
 import { getCurrentUser, signInWithRedirect, signOut } from 'aws-amplify/auth';
 import { useTranslation } from 'react-i18next';
 import { PiCircleNotch } from 'react-icons/pi';
-import useGlobalConfig from '../hooks/useGlobalConfig';
 
 type Props = BaseProps & {
   children: ReactNode;
@@ -20,9 +19,10 @@ const AuthCustom: React.FC<Props> = ({ children }) => {
   const [authenticated, setAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
   const { t } = useTranslation();
-  const { getGlobalConfig } = useGlobalConfig();
-  const { data: globalConfig } = getGlobalConfig();
-  const logoSrc = globalConfig?.logoPath ?? '';
+
+  // Although logoPath is available in global config, the config endpoint is authenticated so cannot be
+  // called at this point. Image hard-coded for now.
+  const logoSrc = '/images/ardy_logo.bmp';
 
   useEffect(() => {
     getCurrentUser()
@@ -60,7 +60,6 @@ const AuthCustom: React.FC<Props> = ({ children }) => {
         </div>
       ) : !authenticated ? (
         <div className="flex flex-col items-center gap-4">
-          <h1>LogoSrc={logoSrc}</h1>
           {logoSrc && (
               <div className="mb-3 mt-10">
                 <img
