@@ -59,23 +59,35 @@ const AuthCustom: React.FC<Props> = ({ children }) => {
           </div>
         </div>
       ) : !authenticated ? (
-        <div className="flex flex-col items-center gap-4">
-          {logoSrc && (
-              <div className="mb-3 mt-10">
-                <img
+        <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-aws-squid-ink-light via-aws-sea-blue to-aws-squid-ink p-4">
+          <div className="w-full max-w-md rounded-2xl border-2 border-white/20 bg-white p-10 shadow-2xl backdrop-blur-sm dark:bg-aws-squid-ink-dark/90">
+            <div className="flex flex-col items-center gap-6">
+              {logoSrc && (
+                <div className="mb-4">
+                  <img
                     src={logoSrc}
                     alt={t('app.name')}
-                    className="h-20 w-auto max-w-[250px]"
+                    className="h-40 w-auto max-w-full drop-shadow-lg"
                     loading="lazy"
-                />
+                  />
+                </div>
+              )}
+              <div className="text-center">
+                <h1 className="text-3xl font-bold text-aws-squid-ink dark:text-white">
+                  {t('app.name')}
+                </h1>
+                <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
+                  Sign in to continue
+                </p>
               </div>
-          )}
-          <div className="mb-5 mt-10 text-4xl text-aws-squid-ink-light">
-            {t('app.name')}
+              <Button
+                onClick={() => handleSignIn()}
+                className="mt-4 w-full rounded-lg px-8 py-3 text-lg font-semibold shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+              >
+                {t('signIn.button.login')}
+              </Button>
+            </div>
           </div>
-          <Button onClick={() => handleSignIn()} className="px-20 text-xl bg-aws-squid-ink-light">
-            {t('signIn.button.login')}
-          </Button>
         </div>
       ) : (
         // Pass the signOut function to the child component
