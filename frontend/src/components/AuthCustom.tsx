@@ -63,11 +63,11 @@ const AuthCustom: React.FC<Props> = ({ children }) => {
           <div className="w-full max-w-md rounded-2xl border-2 border-white/20 bg-white p-10 shadow-2xl backdrop-blur-sm dark:bg-aws-squid-ink-dark/90">
             <div className="flex flex-col items-center gap-6">
               {logoSrc && (
-                <div className="mb-4">
+                <div className="mb-4 p-8">
                   <img
                     src={logoSrc}
                     alt={t('app.name')}
-                    className="h-40 w-auto max-w-full drop-shadow-lg"
+                    className="h-40 w-auto max-w-full"
                     loading="lazy"
                   />
                 </div>
