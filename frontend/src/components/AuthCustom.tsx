@@ -60,6 +60,7 @@ const AuthCustom: React.FC<Props> = ({ children }) => {
         </div>
       ) : !authenticated ? (
         <div className="flex flex-col items-center gap-4">
+          <h1>LogoSrc={logoSrc}</h1>
           {logoSrc && (
               <div className="mb-3 mt-10">
                 <img
