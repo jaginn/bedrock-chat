@@ -1,7 +1,7 @@
 const translation = {
   translation: {
     app: {
-      name: 'Ardy',
+      name: 'Bedrock Chat',
       inputMessage: 'Nachricht senden',
       pinnedBots: 'Angeheftete Bots',
       starredBots: 'Favorisierte Bots',
