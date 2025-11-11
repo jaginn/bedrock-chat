@@ -47,11 +47,11 @@ const AuthCustom: React.FC<Props> = ({ children }) => {
 
   const handleSignOut = async () => {
     try {
-      await signOut({ global: true });
+      // For custom OAuth providers, do local signout only
+      // The OAuth provider handles its own logout flow via redirectSignOut URL
+      await signOut({ global: false });
     } catch (error) {
       console.error('Error signing out:', error);
-      // Even if the global signout fails, clear local session
-      await signOut();
     }
   };
 
