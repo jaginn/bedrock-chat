@@ -45,14 +45,19 @@ const AuthCustom: React.FC<Props> = ({ children }) => {
     });
   };
 
-  const handleSignOut = async () => {
-    try {
-      // For custom OAuth providers, do local signout only
-      // The OAuth provider handles its own logout flow via redirectSignOut URL
-      await signOut({ global: false });
-    } catch (error) {
-      console.error('Error signing out:', error);
-    }
+  const handleSignOut = () => {
+    // For custom OAuth providers, manually construct logout URL to avoid token issues
+    const cognitoDomain = import.meta.env.VITE_APP_COGNITO_DOMAIN;
+    const clientId = import.meta.env.VITE_APP_USER_POOL_CLIENT_ID;
+    const logoutUri = import.meta.env.VITE_APP_REDIRECT_SIGNOUT_URL;
+
+    // Clear local session first
+    localStorage.clear();
+    sessionStorage.clear();
+
+    // Redirect to OAuth provider logout
+    const logoutUrl = `https://${cognitoDomain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(logoutUri)}`;
+    window.location.href = logoutUrl;
   };
 
   return (
