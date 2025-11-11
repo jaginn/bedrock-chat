@@ -72,7 +72,7 @@ const AuthCustom: React.FC<Props> = ({ children }) => {
               )}
               <div className="text-center">
                 <p className="text-lg text-gray-600 dark:text-gray-300">
-                  Please sign in to continue
+                  Please login to continue
                 </p>
               </div>
               <Button
