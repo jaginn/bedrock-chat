@@ -63,17 +63,15 @@ const AuthCustom: React.FC<Props> = ({ children }) => {
           <div className="w-full max-w-md rounded-2xl border-2 border-white/20 bg-white p-10 shadow-2xl backdrop-blur-sm dark:bg-aws-squid-ink-dark/90">
             <div className="flex flex-col items-center gap-6">
               {logoSrc && (
-                <div className="mb-4">
-                  <img
-                    src={logoSrc}
-                    alt={t('app.name')}
-                    className="h-40 w-auto max-w-full"
-                    loading="lazy"
-                  />
-                </div>
+                <img
+                  src={logoSrc}
+                  alt={t('app.name')}
+                  className="h-40 w-auto max-w-full"
+                  loading="lazy"
+                />
               )}
               <div className="text-center">
-                <p className="mt-2 text-lg text-gray-600 dark:text-gray-300">
+                <p className="text-lg text-gray-600 dark:text-gray-300">
                   Please sign in to continue
                 </p>
               </div>
