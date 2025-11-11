@@ -45,8 +45,14 @@ const AuthCustom: React.FC<Props> = ({ children }) => {
     });
   };
 
-  const handleSignOut = () => {
-    signOut();
+  const handleSignOut = async () => {
+    try {
+      await signOut({ global: true });
+    } catch (error) {
+      console.error('Error signing out:', error);
+      // Even if the global signout fails, clear local session
+      await signOut();
+    }
   };
 
   return (
