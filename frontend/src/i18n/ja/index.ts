@@ -924,6 +924,10 @@ const translation: typeof en = {
           label: 'Claude 3 Haiku v1',
           hint: 'Claude 3 Haiku v1を使用してドキュメントの高度な解析を行います。',
         },
+        amazon_nova_pro_v1: {
+          label: 'Amazon Nova Pro v1',
+          hint: 'Amazon Nova Pro v1を使用してドキュメントの高度な解析を行います。',
+        },
       },
       webCrawlerConfig: {
         title: 'Webクローラーの設定',

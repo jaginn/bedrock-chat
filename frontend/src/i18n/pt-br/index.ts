@@ -878,6 +878,10 @@ Como você categorizaria este e-mail?`,
           label: 'Claude 3 Haiku v1',
           hint: 'Use Claude 3 Haiku v1 para análise avançada de documentos.',
         },
+        amazon_nova_pro_v1: {
+          label: 'Amazon Nova Pro v1',
+          hint: 'Use Amazon Nova Pro v1 para análise avançada de documentos.',
+        },
       },
       webCrawlerConfig: {
         title: 'Configuração do Web Crawler',

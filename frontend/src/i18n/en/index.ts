@@ -918,6 +918,10 @@ How would you categorize this email?`,
           label: 'Claude 3 Haiku v1',
           hint: 'Use Claude 3 Haiku v1 for advanced document parsing.',
         },
+        amazon_nova_pro_v1: {
+          label: 'Amazon Nova Pro v1',
+          hint: 'Use Amazon Nova Pro v1 for advanced document parsing.',
+        },
       },
       webCrawlerConfig: {
         title: 'Web Crawler Config',

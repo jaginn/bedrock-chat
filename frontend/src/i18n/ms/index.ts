@@ -686,6 +686,10 @@ const translation = {
           label: 'Claude 3 Haiku v1',
           hint: 'Gunakan Claude 3 Haiku v1 untuk penguraian dokumen lanjutan.',
         },
+        amazon_nova_pro_v1: {
+          label: 'Amazon Nova Pro v1',
+          hint: 'Gunakan Amazon Nova Pro v1 untuk penguraian dokumen lanjutan.',
+        },
       },
       webCrawlerConfig: {
         title: 'Konfigurasi Perayap Web',

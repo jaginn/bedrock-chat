@@ -699,6 +699,10 @@ Jak sklasyfikowałbyś ten e-mail?`,
           label: 'Claude 3 Haiku v1',
           hint: 'Użyj Claude 3 Haiku v1 do zaawansowanego parsowania dokumentów.',
         },
+        amazon_nova_pro_v1: {
+          label: 'Amazon Nova Pro v1',
+          hint: 'Użyj Amazon Nova Pro v1 do zaawansowanego parsowania dokumentów.',
+        },
       },
       webCrawlerConfig: {
         title: 'Konfiguracja Web Crawlera',

@@ -696,6 +696,10 @@ Bạn sẽ phân loại email này như thế nào?`,
           label: 'Claude 3 Haiku v1',
           hint: 'Sử dụng Claude 3 Haiku v1 cho phân tích tài liệu nâng cao.',
         },
+        amazon_nova_pro_v1: {
+          label: 'Amazon Nova Pro v1',
+          hint: 'Sử dụng Amazon Nova Pro v1 cho phân tích tài liệu nâng cao.',
+        },
       },
       webCrawlerConfig: {
         title: 'Cấu hình Web Crawler',

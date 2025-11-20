@@ -17,6 +17,7 @@ type_kb_parsing_model = Literal[
     "anthropic.claude-3-5-sonnet-v1",
     "anthropic.claude-3-haiku-v1",
     "anthropic.claude-3-sonnet-v1",
+    "amazon.nova-pro-v1:0",
     "disabled",
 ]
 type_kb_web_crawling_scope = Literal["DEFAULT", "HOST_ONLY", "SUBDOMAINS"]

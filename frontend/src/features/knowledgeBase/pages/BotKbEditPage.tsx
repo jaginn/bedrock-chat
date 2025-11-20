@@ -313,6 +313,13 @@ const BotKbEditPage: React.FC = () => {
         'knowledgeBaseSettings.parsingModel.claude_3_haiku_v1.hint'
       ),
     },
+    {
+      label: t('knowledgeBaseSettings.parsingModel.amazon_nova_pro_v1.label'),
+      value: 'amazon.nova-pro-v1:0',
+      description: t(
+        'knowledgeBaseSettings.parsingModel.amazon_nova_pro_v1.hint'
+      ),
+    },
   ];
 
   const [fixedSizeParams, setFixedSizeParams] = useState<FixedSizeParams>(

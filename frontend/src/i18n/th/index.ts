@@ -683,6 +683,10 @@ const translation = {
           label: 'Claude 3 Haiku v1',
           hint: 'ใช้ Claude 3 Haiku v1 สำหรับการวิเคราะห์เอกสารขั้นสูง',
         },
+        amazon_nova_pro_v1: {
+          label: 'Amazon Nova Pro v1',
+          hint: 'ใช้ Amazon Nova Pro v1 สำหรับการวิเคราะห์เอกสารขั้นสูง',
+        },
       },
       webCrawlerConfig: {
         title: 'การตั้งค่าการทำเว็บคราวเลอร์',
