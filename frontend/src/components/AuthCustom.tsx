@@ -71,8 +71,8 @@ const AuthCustom: React.FC<Props> = ({ children }) => {
                 />
               )}
               <div className="text-center">
-                <p className="text-lg text-gray-600 dark:text-gray-300">
-                  Please login to continue
+                <p className="text-gray-600 dark:text-gray-300">
+                  AI-generated responses by Ardy may be incorrect, incomplete or inaccurate. You are responsible for validating and checking all outputs before use.
                 </p>
               </div>
               <Button
