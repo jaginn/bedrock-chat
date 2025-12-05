@@ -643,51 +643,60 @@ def propose_conversation_title(
 - Title must be in the same language as the conversation.
 </rules>
 """
-    # Fetch existing conversation
-    conversation = find_conversation_by_id(user_id, conversation_id)
-
-    messages = trace_to_root(
-        node_id=conversation.last_message_id,
-        message_map=conversation.message_map,
-    )
-
-    # Append message to generate title
-    new_message = SimpleMessageModel(
-        role="user",
-        content=[
-            TextContentModel(
-                content_type="text",
-                body=PROMPT,
-            )
-        ],
-    )
-    messages.append(new_message)
-
-    # Invoke Bedrock
-    args = compose_args_for_converse_api(
-        messages=[
-            message
-            for message in messages
-            if not any(
-                isinstance(content, ToolUseContentModel)
-                or isinstance(content, ToolResultContentModel)
-                or isinstance(content, ReasoningContentModel)
-                for content in message.content
-            )
-        ],
-        model=model,
-        stream=False,
-    )
-    response = call_converse_api(args)
-    reply_txt = (
-        response["output"]["message"]["content"][0]["text"]
-        if "message" in response["output"]
-        and len(response["output"]["message"]["content"]) > 0
-        and "text" in response["output"]["message"]["content"][0]
-        else ""
-    )
-
-    return reply_txt
+    # # Fetch existing conversation
+    # conversation = find_conversation_by_id(user_id, conversation_id)
+    #
+    # messages = trace_to_root(
+    #     node_id=conversation.last_message_id,
+    #     message_map=conversation.message_map,
+    # )
+    #
+    # # Append message to generate title
+    # new_message = SimpleMessageModel(
+    #     role="user",
+    #     content=[
+    #         TextContentModel(
+    #             content_type="text",
+    #             body=PROMPT,
+    #         )
+    #     ],
+    # )
+    # messages.append(new_message)
+    #
+    # # Invoke Bedrock
+    # # Filter out tool use, tool result, and reasoning content while keeping messages intact
+    # filtered_messages = []
+    # for message in messages:
+    #     filtered_content = [
+    #         content
+    #         for content in message.content
+    #         if not isinstance(content, (ToolUseContentModel, ToolResultContentModel, ReasoningContentModel))
+    #     ]
+    #     # Only include messages that have content after filtering
+    #     if filtered_content:
+    #         filtered_messages.append(
+    #             SimpleMessageModel(
+    #                 role=message.role,
+    #                 content=filtered_content,
+    #             )
+    #         )
+    #
+    # args = compose_args_for_converse_api(
+    #     messages=filtered_messages,
+    #     model=model,
+    #     stream=False,
+    # )
+    # response = call_converse_api(args)
+    # reply_txt = (
+    #     response["output"]["message"]["content"][0]["text"]
+    #     if "message" in response["output"]
+    #     and len(response["output"]["message"]["content"]) > 0
+    #     and "text" in response["output"]["message"]["content"][0]
+    #     else ""
+    # )
+    #
+    # return reply_txt
+    return "Temp title..."
 
 
 def fetch_conversation(user_id: str, conversation_id: str) -> Conversation:
